@@ -176,18 +176,28 @@
             trials: trialData
         };
 
+        console.log('Submitting data to Google Sheets:', payload);
+
         try {
-            await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+            // Use form data approach which works better with Google Apps Script
+            const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
                 body: JSON.stringify(payload)
             });
-            console.log('Data submitted successfully');
+            console.log('Data submission response:', response);
         } catch (error) {
             console.error('Error submitting data:', error);
+            // Fallback: try with no-cors mode
+            try {
+                await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(payload)
+                });
+                console.log('Data submitted via fallback method');
+            } catch (e) {
+                console.error('Fallback also failed:', e);
+            }
         }
     }
 
