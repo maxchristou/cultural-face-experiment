@@ -152,6 +152,9 @@
     const jsPsych = initJsPsych({
         on_finish: function() {
             // Send data to Google Sheets
+            console.log('=== EXPERIMENT FINISHED ===');
+            console.log('Trial data collected:', trialData);
+            console.log('Number of trials:', trialData.length);
             sendDataToGoogleSheets();
         },
         show_progress_bar: true
@@ -176,7 +179,9 @@
             trials: trialData
         };
 
-        console.log('Submitting data to Google Sheets:', payload);
+        console.log('=== SUBMITTING DATA ===');
+        console.log('Payload:', JSON.stringify(payload, null, 2));
+        alert('Submitting ' + trialData.length + ' trials to Google Sheets...');
 
         try {
             // Use form data approach which works better with Google Apps Script
