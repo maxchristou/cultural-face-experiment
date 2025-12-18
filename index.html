@@ -454,7 +454,13 @@
                         <p>You may now close this window.</p>
                     `;
                 },
-                choices: "NO_KEYS"
+                choices: "NO_KEYS",
+                on_start: function() {
+                    // Send data when end screen appears (since on_finish never fires with NO_KEYS)
+                    console.log('=== END SCREEN STARTED - SENDING DATA ===');
+                    alert('Sending ' + trialData.length + ' trials to Google Sheets...');
+                    sendDataToGoogleSheets();
+                }
             };
 
             // Build and run timeline
