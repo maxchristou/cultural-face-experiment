@@ -156,6 +156,7 @@
     const jsPsych = initJsPsych({
         on_finish: function() {
             // Send data to Google Sheets
+            alert('EXPERIMENT FINISHED! Trials collected: ' + trialData.length);
             console.log('=== EXPERIMENT FINISHED ===');
             console.log('Trial data collected:', trialData);
             console.log('Number of trials:', trialData.length);
