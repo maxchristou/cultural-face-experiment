@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Face Perception Study</title>
+    <script src="https://unpkg.com/jspsych@7.3.4"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.2.1"></script>
+    <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <style>
+        .jspsych-content {
+            max-width: 900px;
+        }
+        .stimulus-image {
+            max-height: 500px;
+            max-width: 700px;
+        }
+        .key-reminder {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .left-key {
+            color: #2196F3;
+            font-weight: bold;
+        }
+        .right-key {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .instructions {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .feedback-correct {
+            color: #4CAF50;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .feedback-incorrect {
+            color: #f44336;
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .completion-code {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2196F3;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body></body>
+<script>
+    /* ==========================================
+       CONFIGURATION - EDIT THESE VALUES
+       ========================================== */
+
+    const CONFIG = {
+        N_TRIALS: 5,              // Number of main trials per participant
+        N_PRACTICE: 2,            // Number of practice trials (1 per source)
+        GOOGLE_SCRIPT_URL: '',    // Fill in after setting up Google Apps Script
+        SAMPLE_WITH_REPLACEMENT: true,
+        FIXATION_DURATION: 500,   // ms
+        FEEDBACK_DURATION: 800    // ms
+    };
+
+    /* ==========================================
+       UTILITY FUNCTIONS
+       ========================================== */
+
+    // Get participant ID from URL or generate one
+    function getParticipantId() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get('pid') || 'unknown_' + Date.now();
+    }
+
+    // Seeded random number generator (mulberry32)
+    function seededRandom(seed) {
+        return function() {
+            let t = seed += 0x6D2B79F5;
+            t = Math.imul(t ^ t >>> 15, t | 1);
+            t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+            return ((t ^ t >>> 14) >>> 0) / 4294967296;
+        };
+    }
+
+    // Hash string to number for seeding
+    function hashString(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash;
+        }
+        return Math.abs(hash);
+    }
+
+    // Generate completion code
+    function generateCompletionCode(pid) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let suffix = '';
+        for (let i = 0; i < 4; i++) {
+            suffix += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return `FACE-${pid}-${suffix}`;
+    }
+
+    // Shuffle array with seeded random
+    function shuffleArray(array, rng) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(rng() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+
+    // Sample with replacement using seeded random
+    function sampleWithReplacement(array, n, rng) {
+        const sampled = [];
+        for (let i = 0; i < n; i++) {
+            const idx = Math.floor(rng() * array.length);
+            sampled.push(array[idx]);
+        }
+        return sampled;
+    }
+
+    /* ==========================================
+       INITIALIZE VARIABLES
+       ========================================== */
+
+    const participantId = getParticipantId();
+    const completionCode = generateCompletionCode(participantId);
+    const rng = seededRandom(hashString(participantId));
+
+    // Data storage
+    let trialData = [];
+    let debriefResponse = '';
+
+    /* ==========================================
+       INITIALIZE JSPSYCH
+       ========================================== */
+
+    const jsPsych = initJsPsych({
+        on_finish: function() {
+            // Send data to Google Sheets
+            sendDataToGoogleSheets();
+        },
+        show_progress_bar: true
+    });
+
+    /* ==========================================
+       DATA SUBMISSION
+       ========================================== */
+
+    async function sendDataToGoogleSheets() {
+        if (!CONFIG.GOOGLE_SCRIPT_URL) {
+            console.log('No Google Script URL configured - skipping data submission');
+            console.log('Trial data:', trialData);
+            return;
+        }
+
+        const payload = {
+            participant_id: participantId,
+            completion_code: completionCode,
+            timestamp: new Date().toISOString(),
+            debrief_response: debriefResponse,
+            trials: trialData
+        };
+
+        try {
+            await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            });
+            console.log('Data submitted successfully');
+        } catch (error) {
+            console.error('Error submitting data:', error);
+        }
+    }
+
+    /* ==========================================
+       TIMELINE COMPONENTS
+       ========================================== */
+
+    // Welcome screen
+    const welcome = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <h1>Welcome to the Face Perception Study</h1>
+            <p>Thank you for participating in this research.</p>
+            <p>Your participant ID: <strong>${participantId}</strong></p>
+            <p>This study examines how people perceive faces from different cultural contexts.</p>
+            <p>The study will take approximately <strong>5 minutes</strong> to complete.</p>
+            <br>
+            <p>Press <strong>SPACE</strong> to continue.</p>
+        `,
+        choices: [' ']
+    };
+
+    // Enter fullscreen
+    const fullscreen = {
+        type: jsPsychFullscreen,
+        fullscreen_mode: true,
+        message: `
+            <p>The experiment will switch to fullscreen mode when you press the button below.</p>
+            <p>Please remain in fullscreen for the duration of the study.</p>
+        `
+    };
+
+    // Instructions
+    const instructions = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <div class="instructions">
+                <h2>Instructions</h2>
+                <p>In this study, you will see photographs of faces one at a time.</p>
+                <p>Each face was sourced from either a <strong>Western</strong> (Google Images) or <strong>Chinese</strong> (Baidu) search engine.</p>
+                <p>Your task is to judge which cultural context each image most likely came from.</p>
+                <br>
+                <h3>Response Keys:</h3>
+                <p><span class="left-key">Left Arrow (←)</span> = Western (Google)</p>
+                <p><span class="right-key">Right Arrow (→)</span> = Chinese (Baidu)</p>
+                <br>
+                <p>Please respond as <strong>quickly and accurately</strong> as possible.</p>
+                <p>There are no right or wrong answers - we are interested in your intuitions.</p>
+                <br>
+                <p>We will start with <strong>${CONFIG.N_PRACTICE} practice trials</strong>.</p>
+                <br>
+                <p>Press <strong>SPACE</strong> to begin the practice.</p>
+            </div>
+        `,
+        choices: [' ']
+    };
+
+    // Fixation cross
+    const fixation = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: '<p style="font-size: 48px;">+</p>',
+        choices: "NO_KEYS",
+        trial_duration: CONFIG.FIXATION_DURATION
+    };
+
+    /* ==========================================
+       LOAD STIMULI AND RUN EXPERIMENT
+       ========================================== */
+
+    fetch('stimuli.json')
+        .then(response => response.json())
+        .then(data => {
+            const allStimuli = data.stimuli;
+
+            // Separate by source
+            const englishStimuli = allStimuli.filter(s => s.source === 'english');
+            const chineseStimuli = allStimuli.filter(s => s.source === 'chinese');
+
+            // Select practice stimuli (1 from each source)
+            const practiceEnglish = englishStimuli[Math.floor(rng() * englishStimuli.length)];
+            const practiceChinese = chineseStimuli[Math.floor(rng() * chineseStimuli.length)];
+            const practiceStimuli = shuffleArray([practiceEnglish, practiceChinese], rng);
+
+            // Sample main stimuli with replacement
+            const mainStimuli = sampleWithReplacement(allStimuli, CONFIG.N_TRIALS, rng);
+
+            // Get all unique images for preloading
+            const allImages = [...new Set([
+                ...practiceStimuli.map(s => s.image),
+                ...mainStimuli.map(s => s.image)
+            ])];
+
+            // Preload images
+            const preload = {
+                type: jsPsychPreload,
+                images: allImages,
+                show_progress_bar: true,
+                message: 'Loading images, please wait...'
+            };
+
+            // Create practice trials
+            const practiceTrials = practiceStimuli.map((stimulus, idx) => {
+                return [
+                    fixation,
+                    {
+                        type: jsPsychImageKeyboardResponse,
+                        stimulus: stimulus.image,
+                        stimulus_height: 450,
+                        choices: ['arrowleft', 'arrowright'],
+                        prompt: `
+                            <div class="key-reminder">
+                                <span class="left-key">← Left = Western</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="right-key">Right = Chinese →</span>
+                            </div>
+                        `,
+                        data: {
+                            task: 'practice',
+                            trial_number: idx + 1,
+                            image: stimulus.image,
+                            source: stimulus.source
+                        },
+                        on_finish: function(data) {
+                            const correct_key = data.source === 'english' ? 'arrowleft' : 'arrowright';
+                            data.correct = data.response === correct_key;
+                            data.response_decoded = data.response === 'arrowleft' ? 'western' : 'chinese';
+                        }
+                    },
+                    {
+                        type: jsPsychHtmlKeyboardResponse,
+                        stimulus: function() {
+                            const lastTrial = jsPsych.data.get().last(1).values()[0];
+                            if (lastTrial.correct) {
+                                return '<p class="feedback-correct">✓ Correct</p>';
+                            } else {
+                                return '<p class="feedback-incorrect">✗ Incorrect</p>';
+                            }
+                        },
+                        choices: "NO_KEYS",
+                        trial_duration: CONFIG.FEEDBACK_DURATION
+                    }
+                ];
+            }).flat();
+
+            // End of practice
+            const endPractice = {
+                type: jsPsychHtmlKeyboardResponse,
+                stimulus: function() {
+                    const practiceData = jsPsych.data.get().filter({task: 'practice'});
+                    const accuracy = Math.round(practiceData.select('correct').mean() * 100);
+                    return `
+                        <h2>End of Practice</h2>
+                        <p>You got <strong>${accuracy}%</strong> correct.</p>
+                        <br>
+                        <p>Remember:</p>
+                        <p><span class="left-key">← Left Arrow</span> = Western (Google)</p>
+                        <p><span class="right-key">Right Arrow →</span> = Chinese (Baidu)</p>
+                        <br>
+                        <p>The main task will now begin. There will be <strong>no feedback</strong> during the main task.</p>
+                        <p>Press <strong>SPACE</strong> to start.</p>
+                    `;
+                },
+                choices: [' ']
+            };
+
+            // Create main trials
+            const mainTrials = mainStimuli.map((stimulus, idx) => {
+                return [
+                    fixation,
+                    {
+                        type: jsPsychImageKeyboardResponse,
+                        stimulus: stimulus.image,
+                        stimulus_height: 450,
+                        choices: ['arrowleft', 'arrowright'],
+                        prompt: `
+                            <div class="key-reminder">
+                                <span class="left-key">← Left = Western</span> &nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="right-key">Right = Chinese →</span>
+                            </div>
+                        `,
+                        data: {
+                            task: 'main',
+                            trial_number: idx + 1,
+                            image: stimulus.image,
+                            source: stimulus.source
+                        },
+                        on_finish: function(data) {
+                            const correct_key = data.source === 'english' ? 'arrowleft' : 'arrowright';
+                            data.correct = data.response === correct_key;
+                            data.response_decoded = data.response === 'arrowleft' ? 'western' : 'chinese';
+
+                            // Store trial data for submission
+                            trialData.push({
+                                participant_id: participantId,
+                                trial_number: data.trial_number,
+                                image: data.image.split('/').pop(), // Just filename
+                                source: data.source,
+                                response: data.response,
+                                response_decoded: data.response_decoded,
+                                correct: data.correct,
+                                rt: data.rt,
+                                timestamp: new Date().toISOString()
+                            });
+                        }
+                    }
+                ];
+            }).flat();
+
+            // Debrief questionnaire
+            const debrief = {
+                type: jsPsychSurveyText,
+                questions: [
+                    {
+                        prompt: 'What cues or features did you use to make your judgments?',
+                        name: 'strategy',
+                        rows: 4,
+                        required: true
+                    }
+                ],
+                preamble: '<h2>Brief Question</h2><p>Please answer the following question about your experience:</p>',
+                on_finish: function(data) {
+                    debriefResponse = data.response.strategy;
+                }
+            };
+
+            // End screen with completion code
+            const endScreen = {
+                type: jsPsychHtmlKeyboardResponse,
+                stimulus: function() {
+                    const mainData = jsPsych.data.get().filter({task: 'main'});
+                    const accuracy = Math.round(mainData.select('correct').mean() * 100);
+                    const meanRt = Math.round(mainData.select('rt').mean());
+                    return `
+                        <h1>Thank You!</h1>
+                        <p>You have completed the study.</p>
+                        <br>
+                        <h3>Your Performance:</h3>
+                        <p>Accuracy: <strong>${accuracy}%</strong></p>
+                        <p>Average response time: <strong>${meanRt} ms</strong></p>
+                        <br>
+                        <h3>Your Completion Code:</h3>
+                        <div class="completion-code">${completionCode}</div>
+                        <p><strong>Please copy this code and send it to the researcher.</strong></p>
+                        <br>
+                        <p>You may now close this window.</p>
+                    `;
+                },
+                choices: "NO_KEYS"
+            };
+
+            // Build and run timeline
+            const timeline = [
+                preload,
+                welcome,
+                fullscreen,
+                instructions,
+                ...practiceTrials,
+                endPractice,
+                ...mainTrials,
+                debrief,
+                endScreen
+            ];
+
+            jsPsych.run(timeline);
+        })
+        .catch(error => {
+            console.error('Error loading stimuli:', error);
+            document.body.innerHTML = `
+                <div style="padding: 50px; text-align: center;">
+                    <h1>Error Loading Experiment</h1>
+                    <p>Could not load stimuli.json. Please ensure the file exists and is properly formatted.</p>
+                    <p>Error: ${error.message}</p>
+                </div>
+            `;
+        });
+</script>
+</html>
