@@ -59,17 +59,13 @@
 </head>
 <body></body>
 <script>
-    // DEBUG: Confirm script version loaded
-    console.log('=== SCRIPT LOADED v2 ===');
-    alert('Script loaded - version 2');
-
     /* ==========================================
        CONFIGURATION - EDIT THESE VALUES
        ========================================== */
 
     const CONFIG = {
-        N_TRIALS: 2,              // Number of main trials per participant (set to 5 for real experiment)
-        N_PRACTICE: 1,            // Number of practice trials (set to 2 for real experiment)
+        N_TRIALS: 5,              // Number of main trials per participant
+        N_PRACTICE: 2,            // Number of practice trials (1 per source)
         GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbw3X33LyZnriWjnYhGtR6p8lcj6wu_i1N_FxEU7PejGz4X2-wkRU4-Hh1a-SuakVj62wQ/exec',
         SAMPLE_WITH_REPLACEMENT: true,
         FIXATION_DURATION: 500,   // ms
@@ -154,14 +150,6 @@
        ========================================== */
 
     const jsPsych = initJsPsych({
-        on_finish: function() {
-            // Send data to Google Sheets
-            alert('EXPERIMENT FINISHED! Trials collected: ' + trialData.length);
-            console.log('=== EXPERIMENT FINISHED ===');
-            console.log('Trial data collected:', trialData);
-            console.log('Number of trials:', trialData.length);
-            sendDataToGoogleSheets();
-        },
         show_progress_bar: true
     });
 
@@ -184,19 +172,12 @@
             trials: trialData
         };
 
-        console.log('=== SUBMITTING DATA ===');
-        console.log('Payload:', JSON.stringify(payload, null, 2));
-        alert('Submitting ' + trialData.length + ' trials to Google Sheets...');
-
         try {
-            // Use form data approach which works better with Google Apps Script
-            const response = await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+            await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
                 method: 'POST',
                 body: JSON.stringify(payload)
             });
-            console.log('Data submission response:', response);
         } catch (error) {
-            console.error('Error submitting data:', error);
             // Fallback: try with no-cors mode
             try {
                 await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
@@ -204,9 +185,8 @@
                     mode: 'no-cors',
                     body: JSON.stringify(payload)
                 });
-                console.log('Data submitted via fallback method');
             } catch (e) {
-                console.error('Fallback also failed:', e);
+                console.error('Data submission failed:', e);
             }
         }
     }
@@ -456,9 +436,7 @@
                 },
                 choices: "NO_KEYS",
                 on_start: function() {
-                    // Send data when end screen appears (since on_finish never fires with NO_KEYS)
-                    console.log('=== END SCREEN STARTED - SENDING DATA ===');
-                    alert('Sending ' + trialData.length + ' trials to Google Sheets...');
+                    // Send data when end screen appears
                     sendDataToGoogleSheets();
                 }
             };
