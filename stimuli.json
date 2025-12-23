@@ -1,104 +1,124 @@
 {
   "stimuli": [
     {
-      "image": "images/chinese/\u5317\u4eac_\u5403\u60ca\u7684\u4eba\u4eec_0139_8c58a035.jpg",
+      "image": "images/chinese/\u771f\u8bda_\u4e27\u7684\u6f14\u5458_0143_2e6bba88.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.886
     },
     {
-      "image": "images/chinese/\u5357\u65b9_\u6050\u60e7\u7684\u4e3b\u7f16_0475_96515873.jpg",
+      "image": "images/chinese/\u5b9e\u62cd_\u50b2\u7684\u519b\u9600_0023_7149a3b9.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.879
     },
     {
-      "image": "images/chinese/\u56db\u5ddd_\u5173\u5fc3\u7684\u4eba\u624b_0111_c6f9d844.jpg",
+      "image": "images/chinese/\u534e\u5357_\u5149\u8363\u7684\u7236\u4eb2_0070_7c3fed9f.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.919
     },
     {
-      "image": "images/chinese/\u56db\u5ddd_\u5403\u60ca\u7684\u6f14\u5458_0083_1343bb3b.jpg",
+      "image": "images/chinese/\u6c5f\u82cf_\u4e25\u5389\u7684\u6f14\u5458_0027_63da393e.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.655
     },
     {
-      "image": "images/chinese/\u5b9e\u62cd_\u50b2\u5cb8\u7684\u519b\u58eb_0037_d188ed9a.jpg",
+      "image": "images/chinese/\u51b7\u9177\u7684\u5305\u6bd4_0184_851517ae.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.578
     },
     {
-      "image": "images/chinese/\u5e7f\u5dde_\u5174\u594b\u7684\u8001\u5e74\u836f\u5242\u5e08_0144_a8ada0f1.jpg",
+      "image": "images/chinese/\u534e\u5317_\u5149\u8363\u7684\u6bcd\u4eb2_0016_33e20cef.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.933
     },
     {
-      "image": "images/chinese/\u6d59\u6c5f_\u4fa0\u7684\u4eba_0174_2246edd3.jpg",
+      "image": "images/chinese/\u5b9e\u62cd_\u5317\u65b9_\u5403\u60ca\u7684\u4e3b\u4fee_0221_b286f46c.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.929
     },
     {
-      "image": "images/chinese/\u6d59\u6c5f_\u5e78\u798f\u7684\u836f\u5242\u5e08_0396_d9f8b059.jpg",
+      "image": "images/chinese/\u5181\u7684\u5305\u6bd4_0017_28bf9529.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.846
     },
     {
-      "image": "images/chinese/\u6df1\u5733_\u5174\u594b\u7684\u8001\u5e74\u4e3b\u5c06_0151_ad592e80.jpg",
+      "image": "images/chinese/\u771f\u6b63_\u6e56\u5357_\u5162\u7684\u4ee3\u8868_0138_620af441.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.74
     },
     {
-      "image": "images/chinese/\u771f\u5b9e_\u897f\u5b89_\u51b7\u9759\u7684\u6cd5\u5b98_0084_85b4022f.jpg",
+      "image": "images/chinese/\u798f\u5efa_\u4e0d\u6015\u7684\u4e3b\u5c06_0082_4fc01b37.jpg",
       "source": "chinese",
-      "culture": "east_asian"
+      "detected_race": "East_Asian",
+      "race_confidence": 0.513
     },
     {
-      "image": "images/english/authentic-thrilled-kiddie-sto_mixed_0010_a7869a29.jpg",
+      "image": "images/english/real-sorrowful-toddler-stock-_mixed_0015_efc6adde_face01.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.908
     },
     {
-      "image": "images/english/britain-annoyed-fella-stock-_mixed_0014_6666d1db.jpg",
+      "image": "images/english/furious-analyzer-stock-shutt_mixed_0005_6744e914.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.992
     },
     {
-      "image": "images/english/english-disappointed-scientist_mixed_0036_8e169cbd.jpg",
+      "image": "images/english/real-british-terrified-female-_mixed_0039_5afc4f03.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.792
     },
     {
-      "image": "images/english/english-shocked-analyzer-stoc_mixed_0042_30cb4e0c.jpg",
+      "image": "images/english/belfast-irritated-lawyer-stoc_mixed_0077_d447a473.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.748
     },
     {
-      "image": "images/english/genuine-terrified-man-stock-_mixed_0066_f7e24f4c.jpg",
+      "image": "images/english/belfast-worried-detective-sto_mixed_0031_c9ac7c1d_face00.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.908
     },
     {
-      "image": "images/english/liverpool-shocked-freshman-st_mixed_0014_cf0608ff.jpg",
+      "image": "images/english/manchester-affectionate-grandf_mixed_0017_4f5f35d8_face01.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.888
     },
     {
-      "image": "images/english/welsh-alarmed-pupil-stock-sh_mixed_0068_0c03fa8e.jpg",
+      "image": "images/english/real-irish-alarmed-doctor-sto_mixed_0038_cd24c226.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.963
     },
     {
-      "image": "images/english/welsh-elated-toddler-stock-s_mixed_0042_f86fdecb.jpg",
+      "image": "images/english/enraged-actor-stock-shutters_mixed_0019_65e6dec1_face01.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.981
     },
     {
-      "image": "images/english/welsh-hopeful-grandparent-sto_mixed_0066_a58048b8.jpg",
+      "image": "images/english/unhappy-student-stock-shutte_happy_0017_ab07d84d.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.883
     },
     {
-      "image": "images/english/yorkshire-shocked-sheriff-sto_mixed_0045_f56c3f0e.jpg",
+      "image": "images/english/irritated-female-stock-shutt_mixed_0010_11d3c1dc.jpg",
       "source": "english",
-      "culture": "western"
+      "detected_race": "White",
+      "race_confidence": 0.93
     }
   ]
 }
