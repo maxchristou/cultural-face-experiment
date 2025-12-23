@@ -64,10 +64,10 @@
        ========================================== */
 
     const CONFIG = {
-        N_TRIALS: 5,              // Number of main trials per participant
+        N_TRIALS_PER_SOURCE: 5,   // Number of main trials per source (5 chinese + 5 english = 10 total)
         N_PRACTICE: 2,            // Number of practice trials (1 per source)
         GOOGLE_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbw3X33LyZnriWjnYhGtR6p8lcj6wu_i1N_FxEU7PejGz4X2-wkRU4-Hh1a-SuakVj62wQ/exec',
-        SAMPLE_WITH_REPLACEMENT: true,
+        SAMPLE_WITH_REPLACEMENT: false,
         FIXATION_DURATION: 500,   // ms
         FEEDBACK_DURATION: 800    // ms
     };
@@ -266,13 +266,19 @@
             const englishStimuli = allStimuli.filter(s => s.source === 'english');
             const chineseStimuli = allStimuli.filter(s => s.source === 'chinese');
 
-            // Select practice stimuli (1 from each source)
-            const practiceEnglish = englishStimuli[Math.floor(rng() * englishStimuli.length)];
-            const practiceChinese = chineseStimuli[Math.floor(rng() * chineseStimuli.length)];
+            // Shuffle stimuli for random selection
+            const shuffledEnglish = shuffleArray(englishStimuli, rng);
+            const shuffledChinese = shuffleArray(chineseStimuli, rng);
+
+            // Select practice stimuli (1 from each source) - use first items after shuffle
+            const practiceEnglish = shuffledEnglish[0];
+            const practiceChinese = shuffledChinese[0];
             const practiceStimuli = shuffleArray([practiceEnglish, practiceChinese], rng);
 
-            // Sample main stimuli with replacement
-            const mainStimuli = sampleWithReplacement(allStimuli, CONFIG.N_TRIALS, rng);
+            // Sample main stimuli WITHOUT replacement - 5 from each source (skip practice items)
+            const mainEnglish = shuffledEnglish.slice(1, CONFIG.N_TRIALS_PER_SOURCE + 1);
+            const mainChinese = shuffledChinese.slice(1, CONFIG.N_TRIALS_PER_SOURCE + 1);
+            const mainStimuli = shuffleArray([...mainEnglish, ...mainChinese], rng);
 
             // Get all unique images for preloading
             const allImages = [...new Set([
@@ -345,7 +351,7 @@
                         <p><span class="left-key">← Left Arrow</span> = Western (Google)</p>
                         <p><span class="right-key">Right Arrow →</span> = Chinese (Baidu)</p>
                         <br>
-                        <p>The main task will now begin. There will be <strong>no feedback</strong> during the main task.</p>
+                        <p>The main task will now begin with <strong>${CONFIG.N_TRIALS_PER_SOURCE * 2} trials</strong>. There will be <strong>no feedback</strong> during the main task.</p>
                         <p>Press <strong>SPACE</strong> to start.</p>
                     `;
                 },
