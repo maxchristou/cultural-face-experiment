@@ -1,102 +1,104 @@
-[
-  {
-    "image": "images/chinese/\u5317\u4eac_\u5403\u60ca\u7684\u4eba\u4eec_0139_8c58a035.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u5357\u65b9_\u6050\u60e7\u7684\u4e3b\u7f16_0475_96515873.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u56db\u5ddd_\u5173\u5fc3\u7684\u4eba\u624b_0111_c6f9d844.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u56db\u5ddd_\u5403\u60ca\u7684\u6f14\u5458_0083_1343bb3b.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u5b9e\u62cd_\u50b2\u5cb8\u7684\u519b\u58eb_0037_d188ed9a.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u5e7f\u5dde_\u5174\u594b\u7684\u8001\u5e74\u836f\u5242\u5e08_0144_a8ada0f1.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u6d59\u6c5f_\u4fa0\u7684\u4eba_0174_2246edd3.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u6d59\u6c5f_\u5e78\u798f\u7684\u836f\u5242\u5e08_0396_d9f8b059.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u6df1\u5733_\u5174\u594b\u7684\u8001\u5e74\u4e3b\u5c06_0151_ad592e80.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/chinese/\u771f\u5b9e_\u897f\u5b89_\u51b7\u9759\u7684\u6cd5\u5b98_0084_85b4022f.jpg",
-    "culture": "east_asian",
-    "correct_response": "f"
-  },
-  {
-    "image": "images/english/authentic-thrilled-kiddie-sto_mixed_0010_a7869a29.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/britain-annoyed-fella-stock-_mixed_0014_6666d1db.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/english-disappointed-scientist_mixed_0036_8e169cbd.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/english-shocked-analyzer-stoc_mixed_0042_30cb4e0c.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/genuine-terrified-man-stock-_mixed_0066_f7e24f4c.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/liverpool-shocked-freshman-st_mixed_0014_cf0608ff.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/welsh-alarmed-pupil-stock-sh_mixed_0068_0c03fa8e.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/welsh-elated-toddler-stock-s_mixed_0042_f86fdecb.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/welsh-hopeful-grandparent-sto_mixed_0066_a58048b8.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  },
-  {
-    "image": "images/english/yorkshire-shocked-sheriff-sto_mixed_0045_f56c3f0e.jpg",
-    "culture": "western",
-    "correct_response": "j"
-  }
-]
+{
+  "stimuli": [
+    {
+      "image": "images/chinese/\u5317\u4eac_\u5403\u60ca\u7684\u4eba\u4eec_0139_8c58a035.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u5357\u65b9_\u6050\u60e7\u7684\u4e3b\u7f16_0475_96515873.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u56db\u5ddd_\u5173\u5fc3\u7684\u4eba\u624b_0111_c6f9d844.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u56db\u5ddd_\u5403\u60ca\u7684\u6f14\u5458_0083_1343bb3b.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u5b9e\u62cd_\u50b2\u5cb8\u7684\u519b\u58eb_0037_d188ed9a.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u5e7f\u5dde_\u5174\u594b\u7684\u8001\u5e74\u836f\u5242\u5e08_0144_a8ada0f1.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u6d59\u6c5f_\u4fa0\u7684\u4eba_0174_2246edd3.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u6d59\u6c5f_\u5e78\u798f\u7684\u836f\u5242\u5e08_0396_d9f8b059.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u6df1\u5733_\u5174\u594b\u7684\u8001\u5e74\u4e3b\u5c06_0151_ad592e80.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/chinese/\u771f\u5b9e_\u897f\u5b89_\u51b7\u9759\u7684\u6cd5\u5b98_0084_85b4022f.jpg",
+      "source": "chinese",
+      "culture": "east_asian"
+    },
+    {
+      "image": "images/english/authentic-thrilled-kiddie-sto_mixed_0010_a7869a29.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/britain-annoyed-fella-stock-_mixed_0014_6666d1db.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/english-disappointed-scientist_mixed_0036_8e169cbd.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/english-shocked-analyzer-stoc_mixed_0042_30cb4e0c.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/genuine-terrified-man-stock-_mixed_0066_f7e24f4c.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/liverpool-shocked-freshman-st_mixed_0014_cf0608ff.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/welsh-alarmed-pupil-stock-sh_mixed_0068_0c03fa8e.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/welsh-elated-toddler-stock-s_mixed_0042_f86fdecb.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/welsh-hopeful-grandparent-sto_mixed_0066_a58048b8.jpg",
+      "source": "english",
+      "culture": "western"
+    },
+    {
+      "image": "images/english/yorkshire-shocked-sheriff-sto_mixed_0045_f56c3f0e.jpg",
+      "source": "english",
+      "culture": "western"
+    }
+  ]
+}
