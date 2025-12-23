@@ -145,6 +145,8 @@
     // Data storage
     let trialData = [];
     let debriefResponse = '';
+    let featureRatings = {};
+    let culturalPerceptionRatings = {};
 
     /* ==========================================
        INITIALIZE JSPSYCH
@@ -170,6 +172,8 @@
             completion_code: completionCode,
             timestamp: new Date().toISOString(),
             debrief_response: debriefResponse,
+            feature_ratings: featureRatings,
+            cultural_perception: culturalPerceptionRatings,
             trials: trialData
         };
 
@@ -431,7 +435,10 @@
                 ],
                 randomize_question_order: false,
                 scale_width: 600,
-                data: {task: 'feature_ratings'}
+                data: {task: 'feature_ratings'},
+                on_finish: function(data) {
+                    featureRatings = data.response;
+                }
             };
 
             // Cultural perception questionnaire
@@ -449,7 +456,10 @@
                 ],
                 randomize_question_order: false,
                 scale_width: 600,
-                data: {task: 'cultural_perception'}
+                data: {task: 'cultural_perception'},
+                on_finish: function(data) {
+                    culturalPerceptionRatings = data.response;
+                }
             };
 
             // Open-ended debrief
