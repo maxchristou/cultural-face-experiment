@@ -1,124 +1,164 @@
 {
   "stimuli": [
     {
-      "image": "images/chinese/\u771f\u8bda_\u4e27\u7684\u6f14\u5458_0143_2e6bba88.jpg",
+      "image": "images/chinese/\u5b9e\u62cd_\u4e0d\u5408\u7684\u8bb2\u5e08_0005_498131d6.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.886
+      "race_confidence": 0.922,
+      "detected_gender": "Male",
+      "detected_age": "30-39"
     },
     {
-      "image": "images/chinese/\u5b9e\u62cd_\u50b2\u7684\u519b\u9600_0023_7149a3b9.jpg",
+      "image": "images/chinese/\u5b9e\u62cd_\u534e\u5357_\u5185\u5bb9\u7684\u7537\u4eba_0020_a8cd3b01.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.879
+      "race_confidence": 0.852,
+      "detected_gender": "Male",
+      "detected_age": "30-39"
     },
     {
-      "image": "images/chinese/\u534e\u5357_\u5149\u8363\u7684\u7236\u4eb2_0070_7c3fed9f.jpg",
+      "image": "images/chinese/\u5b9e\u62cd_\u534e\u5357_\u5174\u65fa\u7684\u516c\u52a1\u5458_0028_e92105f8.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.919
+      "race_confidence": 0.971,
+      "detected_gender": "Male",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/chinese/\u6c5f\u82cf_\u4e25\u5389\u7684\u6f14\u5458_0027_63da393e.jpg",
+      "image": "images/chinese/\u5b9e\u62cd_\u6210\u90fd_\u5403\u60ca\u7684\u79d8\u4e66_0129_4ec43255.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.655
+      "race_confidence": 0.957,
+      "detected_gender": "Female",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/chinese/\u51b7\u9177\u7684\u5305\u6bd4_0184_851517ae.jpg",
+      "image": "images/chinese/\u6e56\u5357_\u5192\u7684\u519b\u533b_0098_411e75db.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.578
+      "race_confidence": 0.976,
+      "detected_gender": "Female",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/chinese/\u534e\u5317_\u5149\u8363\u7684\u6bcd\u4eb2_0016_33e20cef.jpg",
+      "image": "images/chinese/\u771f\u5b9e_\u5174\u594b\u7684\u4f8d\u5019_0137_06b93152.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.933
+      "race_confidence": 0.952,
+      "detected_gender": "Female",
+      "detected_age": "40-49"
     },
     {
-      "image": "images/chinese/\u5b9e\u62cd_\u5317\u65b9_\u5403\u60ca\u7684\u4e3b\u4fee_0221_b286f46c.jpg",
+      "image": "images/chinese/\u4e1c\u5317_\u5bb3\u6015\u7684\u4e3b\u7f16_0164_aff86671.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.929
+      "race_confidence": 0.679,
+      "detected_gender": "Female",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/chinese/\u5181\u7684\u5305\u6bd4_0017_28bf9529.jpg",
+      "image": "images/chinese/\u771f\u8bda_\u5bb3\u6015\u7684\u4f09_0108_c67d61d7.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.846
+      "race_confidence": 0.826,
+      "detected_gender": "Female",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/chinese/\u771f\u6b63_\u6e56\u5357_\u5162\u7684\u4ee3\u8868_0138_620af441.jpg",
+      "image": "images/chinese/\u6c5f\u5357_\u4e0a\u5347\u7684\u6f14\u5458_0109_fe6ae848.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.74
+      "race_confidence": 0.979,
+      "detected_gender": "Female",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/chinese/\u798f\u5efa_\u4e0d\u6015\u7684\u4e3b\u5c06_0082_4fc01b37.jpg",
+      "image": "images/chinese/\u771f\u5b9e_\u6d59\u6c5f_\u5174\u594b\u7684\u4e0a\u5c06_0081_0c43907f.webp",
       "source": "chinese",
       "detected_race": "East_Asian",
-      "race_confidence": 0.513
+      "race_confidence": 0.942,
+      "detected_gender": "Male",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/english/real-sorrowful-toddler-stock-_mixed_0015_efc6adde_face01.jpg",
+      "image": "images/english/real-uk-affectionate-teenager-_mixed_0085_1dbdbea1.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.908
+      "race_confidence": 0.936,
+      "detected_gender": "Male",
+      "detected_age": "40-49"
     },
     {
-      "image": "images/english/furious-analyzer-stock-shutt_mixed_0005_6744e914.jpg",
+      "image": "images/english/english-joyful-male-stock-sh_mixed_0043_a574cef9.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.992
+      "race_confidence": 0.724,
+      "detected_gender": "Male",
+      "detected_age": "30-39"
     },
     {
-      "image": "images/english/real-british-terrified-female-_mixed_0039_5afc4f03.jpg",
+      "image": "images/english/galway-affectionate-educator-_mixed_0032_97a8e991.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.792
+      "race_confidence": 0.989,
+      "detected_gender": "Female",
+      "detected_age": "40-49"
     },
     {
-      "image": "images/english/belfast-irritated-lawyer-stoc_mixed_0077_d447a473.jpg",
+      "image": "images/english/natural-elated-pro-stock-shu_mixed_0043_fc2ecbfb.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.748
+      "race_confidence": 0.874,
+      "detected_gender": "Female",
+      "detected_age": "40-49"
     },
     {
-      "image": "images/english/belfast-worried-detective-sto_mixed_0031_c9ac7c1d_face00.jpg",
+      "image": "images/english/natural-serene-freshman-stock_mixed_0006_47cfd962.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.908
+      "race_confidence": 0.832,
+      "detected_gender": "Male",
+      "detected_age": "20-29"
     },
     {
-      "image": "images/english/manchester-affectionate-grandf_mixed_0017_4f5f35d8_face01.jpg",
+      "image": "images/english/liverpool-pleased-waitress-st_mixed_0020_6b62dfd0.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.888
+      "race_confidence": 0.991,
+      "detected_gender": "Male",
+      "detected_age": "30-39"
     },
     {
-      "image": "images/english/real-irish-alarmed-doctor-sto_mixed_0038_cd24c226.jpg",
+      "image": "images/english/candid-yorkshire-affectionate-_mixed_0030_2c94353d.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.963
+      "race_confidence": 0.78,
+      "detected_gender": "Male",
+      "detected_age": "50-59"
     },
     {
-      "image": "images/english/enraged-actor-stock-shutters_mixed_0019_65e6dec1_face01.jpg",
+      "image": "images/english/galway-glad-father-stock-shu_mixed_0047_d5ecfc21.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.981
+      "race_confidence": 1.0,
+      "detected_gender": "Male",
+      "detected_age": "30-39"
     },
     {
-      "image": "images/english/unhappy-student-stock-shutte_happy_0017_ab07d84d.jpg",
+      "image": "images/english/oxford-elated-conductor-stock_mixed_0002_fd3f4a73.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.883
+      "race_confidence": 0.975,
+      "detected_gender": "Male",
+      "detected_age": "30-39"
     },
     {
-      "image": "images/english/irritated-female-stock-shutt_mixed_0010_11d3c1dc.jpg",
+      "image": "images/english/liverpool-cheerful-captain-st_mixed_0046_1ea098e0.jpg",
       "source": "english",
       "detected_race": "White",
-      "race_confidence": 0.93
+      "race_confidence": 0.857,
+      "detected_gender": "Male",
+      "detected_age": "30-39"
     }
   ]
 }
